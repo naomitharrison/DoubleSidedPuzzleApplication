@@ -4,7 +4,7 @@ import java.awt.Rectangle;
 
 public class Tile {
 	final String top; //gray background-black number
-	final String bottom; //black background-white numbber
+	final String bottom; //black background-white number
 	
 	Rectangle location;
 	boolean flipped;
