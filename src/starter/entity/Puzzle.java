@@ -6,12 +6,14 @@ import starter.entity.Tile;
 public class Puzzle {
 	
 	TileSet tiles;
+	public int moves;
 	
 	Tile[][] currentShape;
 	
 	public Puzzle(TileSet t) {
 		this.tiles = t;
 		this.currentShape = t.initialShape;
+		this.moves = 0;
 	}
 	
 	public void updatePuzzle(Tile clickedTile) { // updates currentShape and clickedTile location

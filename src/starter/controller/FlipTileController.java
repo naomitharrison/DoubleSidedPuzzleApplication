@@ -10,7 +10,6 @@ import starter.entity.Model;
 import starter.entity.Puzzle;
 import starter.entity.Tile;
 import starter.boundary.Application;
-import starter.boundary.Panel;
 
 public class FlipTileController extends MouseAdapter { //this is a java mouse listener
 	
@@ -39,8 +38,9 @@ public class FlipTileController extends MouseAdapter { //this is a java mouse li
 			}
 		}
 		
-		// flip tile and refresh display
+		// flip tile, add one move, and refresh display
 		puzzle.updatePuzzle(clickedTile);
+		puzzle.moves += 1;
 		app.repaint();
 	}
 
