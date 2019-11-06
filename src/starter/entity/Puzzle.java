@@ -6,7 +6,7 @@ import starter.entity.Tile;
 public class Puzzle {
 	
 	TileSet tiles;
-	public int moves;
+	int moves;
 	
 	Tile[][] currentShape;
 	
@@ -25,7 +25,6 @@ public class Puzzle {
 		currentShape[clickedLocation[0]][clickedLocation[1]] = null;
 		currentShape[nullLocation[0]][nullLocation[1]] = clickedTile;
 	}
-	
 	
 	public ArrayList<Tile> movableTiles() { //returns a list of tiles that are adjacent to the empty space
 		ArrayList<Tile> tiles = new ArrayList<Tile>();
@@ -116,6 +115,18 @@ public class Puzzle {
 	
 	public Tile[][] getShape() {
 		return currentShape;
+	}
+	
+	public void addOneMove() {
+		moves += 1;
+	}
+	
+	public int getMoves() {
+		return moves;
+	}
+	
+	public void resetMoves() {
+		moves = 0;
 	}
 
 }

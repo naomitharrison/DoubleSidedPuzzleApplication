@@ -23,10 +23,8 @@ public class FlipTileController extends MouseAdapter { //this is a java mouse li
 	
 	@Override
 	public void mousePressed(MouseEvent me) {
-		// if mouse is clicked
+		// if mouse is clicked in a tile adjacent to empty space
 		Point p = me.getPoint();
-		
-		// in a tile adjacent to empty space
 		Puzzle puzzle = model.getPuzzle();
 		ArrayList<Tile> movableTiles = puzzle.movableTiles();
 		Tile clickedTile = null;
@@ -40,7 +38,7 @@ public class FlipTileController extends MouseAdapter { //this is a java mouse li
 		
 		// flip tile, add one move, and refresh display
 		puzzle.updatePuzzle(clickedTile);
-		puzzle.moves += 1;
+		puzzle.addOneMove();
 		app.repaint();
 	}
 
