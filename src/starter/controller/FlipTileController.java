@@ -30,7 +30,7 @@ public class FlipTileController extends MouseAdapter { //this is a java mouse li
 		// in a tile adjacent to empty space
 		Puzzle puzzle = model.getPuzzle();
 		ArrayList<Tile> movableTiles = puzzle.movableTiles();
-		Tile clickedTile;
+		Tile clickedTile = null;
 		for(int i=0; i<movableTiles.size(); i++) {
 			Tile t = movableTiles.get(i);
 			Rectangle r = t.getRectangle();
@@ -39,24 +39,9 @@ public class FlipTileController extends MouseAdapter { //this is a java mouse li
 			}
 		}
 		
-		// flip clicked tile
-		// update puzzle
-		// refresh display
-		
-
-//		Tile tile = model.getTile();
-//		Rectangle r = tile.getRectangle();
-//		Point p = me.getPoint();
-//		if (r.contains(p)) {
-//			tile.flip();
-//			panel pp = app.getPanel();
-//			
-//			int newx = (int) (rnd.nextDouble() + (pp.getWidth() - 100));
-//			int newy = (int) (rnd.nextDouble() + (pp.getHeight() - 100));
-//			Rectangle newRect = new Rectangle(newx,newy,100, 100);
-//			tile.setLocation(newRect);
-//			app.repaint();
-//		}
+		// flip tile and refresh display
+		puzzle.updatePuzzle(clickedTile);
+		app.repaint();
 	}
 
 }

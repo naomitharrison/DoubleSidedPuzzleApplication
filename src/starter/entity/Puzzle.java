@@ -14,9 +14,16 @@ public class Puzzle {
 		this.currentShape = t.initialShape;
 	}
 	
-	void updatePuzzle() { // updates currentShape and the location of the tiles
-		//tiles.updateTileLocation() to update each moved tile location
+	public void updatePuzzle(Tile clickedTile) { // updates currentShape and clickedTile location
+		int[] clickedLocation = findTile(clickedTile);
+		int[] nullLocation = findNullTile();
+		
+		tiles.flipTile(clickedTile, nullLocation[0], nullLocation[1]);
+		
+		currentShape[clickedLocation[0]][clickedLocation[1]] = null;
+		currentShape[nullLocation[0]][nullLocation[1]] = clickedTile;
 	}
+	
 	
 	public ArrayList<Tile> movableTiles() { //returns a list of tiles that are adjacent to the empty space
 		ArrayList<Tile> tiles = new ArrayList<Tile>();
@@ -70,17 +77,28 @@ public class Puzzle {
 		return movableLocations;
 	}
 	
+	int[] findTile(Tile t) { // returns coordinates (int array: [column, row]) of given tile in currentShape
+		int[] location = new int[2];
+
+		//Find indices of element with 0 value
+		for (int column = 0; column < currentShape.length; column++) {
+		    for (int row = 0; row < currentShape[column].length; row++) {
+		        if (currentShape[column][row] == t) {
+		        	location[0] = column;
+		        	location[1] = row;
+		        }
+		    }
+		}
+		return location;
+	}
 
 	int[] findNullTile() { // returns coordinates (int array: [column, row]) of empty tile in currentShape
 		int[] nullLocation = new int[2];
 
 		//Find indices of element with 0 value
-		for (int column = 0; column < currentShape.length; column++)
-		{
-		    for (int row = 0; row < currentShape[column].length; row++)
-		    {
-		        if (currentShape[column][row] == null)
-		        {
+		for (int column = 0; column < currentShape.length; column++) {
+		    for (int row = 0; row < currentShape[column].length; row++) {
+		        if (currentShape[column][row] == null) {
 		        	nullLocation[0] = column;
 		        	nullLocation[1] = row;
 		        }

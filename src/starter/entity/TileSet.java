@@ -25,16 +25,16 @@ public class TileSet {
 	Tile t7 = new Tile("4", "1", RM, false);
 	Tile t8 = new Tile("3", "2", RB, false);
 	
-	Tile[][] initialShape = {{t1, t4, null},
-							{t2, t5, t7},
-							{t3, t6, t8}};
+	final Tile[][] initialShape =  {{t1, t4, null},
+									{t2, t5, t7},
+									{t3, t6, t8}};
 	
 	
-	public TileSet() { // future work: add an input to instantiation that determines initial configuration
-		
+	public TileSet() { 
+		// future work: could add an input to instantiation that determines initial configuration		
 	}
 	
-	void updateTileLocation(Tile t, int row, int column) { // row and column have to be integers 0-2
+	void flipTile(Tile t, int column, int row) { // updates rectangle and flipped status of tile
 		if(column == 0) { // left
 			if(row==0) {
 				t.setLocation(LT);
