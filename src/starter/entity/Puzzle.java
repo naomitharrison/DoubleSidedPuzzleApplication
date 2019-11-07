@@ -1,6 +1,8 @@
 package starter.entity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import starter.entity.Tile;
 
 public class Puzzle {
@@ -26,13 +28,88 @@ public class Puzzle {
 		currentShape[nullLocation[0]][nullLocation[1]] = clickedTile;
 	}
 	
+	public boolean checkWin() {
+		if(currentShape[1][1] != null) {
+			return false;
+		}
+		for(int i=0;i<currentShape[0].length;i++) {
+			if(currentShape[0][i].flipped) { //if any tile in first row is flipped
+				return false;
+			}
+			if(!currentShape[2][i].flipped) { //if any tile in last row is not flipped
+				return false;
+			}
+		}
+		if (currentShape[1][0].flipped) { // if left tile in middle row is flipped
+			return false;
+		}
+		if (!currentShape[1][2].flipped) { // if right tile in middle row is not flipped
+			return false;
+		}
+		//if the numbers are in the correct order
+		for(int j=0;j<currentShape[0].length;j++) {
+			int topRowNum = j+1;
+			int bottomRowNum = 3-j;
+			String topRow = String.valueOf(topRowNum);
+			String bottomRow = String.valueOf(bottomRowNum);
+			if(!topRow.equals(currentShape[0][j].getVisibleDigit())){
+				return false;
+			}
+			if(!bottomRow.equals(currentShape[2][j].getVisibleDigit())){
+				return false;
+			}
+		}
+		String one = "1";
+		String four = "4";
+		if(!four.equals(currentShape[1][0].getVisibleDigit())) {
+			return false;
+		}
+		if(!one.equals(currentShape[1][2].getVisibleDigit())) {
+			return false;
+		}
+		return true;
+	}
+	
+	
+	public boolean checkLose() {
+		int ones = 0;
+		int twos = 0;
+		int threes = 0;
+		int fours = 0;
+		int maxDigits = 3;
+		for(int i=0;i<currentShape.length;i++) {
+			for(int j=0;j<currentShape[i].length;j++) {
+				Tile t = currentShape[i][j];
+				String digit = t.getVisibleDigit();
+				if(digit.equals("1")) {
+					ones+=1;
+				}
+				if(digit.equals("2")) {
+					twos+=1;
+				}
+				if(digit.equals("3")) {
+					threes+=1;
+				}
+				if(digit.equals("4")) {
+					fours+=1;
+				}
+			}
+		}
+		if((ones>=maxDigits)||(twos>=maxDigits)||(threes>=maxDigits)||(fours>=maxDigits)) {
+			return true;
+		}
+		return false;
+	}
+	
 	public ArrayList<Tile> movableTiles() { //returns a list of tiles that are adjacent to the empty space
 		ArrayList<Tile> tiles = new ArrayList<Tile>();
 		
 		ArrayList<int[]> coordinates = moveableCoordinates();
 		for(int i = 0; i<coordinates.size(); i++) {
 			int[] location = coordinates.get(i);
-			Tile t = currentShape[location[0]][location[1]];
+			int x = location[0];
+			int y = location[1];
+			Tile t = currentShape[x][y];
 			tiles.add(t);
 		}
 		
@@ -43,37 +120,39 @@ public class Puzzle {
 		ArrayList<int[]> movableLocations = new ArrayList<int[]>();
 
 		int[] nullLocation = this.findNullTile();
-		int[] xTile = new int[2];
-		int[] xTile2 = new int[2];
+		
 		int[] yTile = new int[2];
 		int[] yTile2 = new int[2];
+		int[] xTile = new int[2];
+		int[] xTile2 = new int[2];
 		
-		if ((nullLocation[0]==0) || (nullLocation[0]==2)) { // 0 = column
-			xTile[0] = 1;
-			xTile[1] = nullLocation[1]; 
-			xTile2 = null;
+		if ((nullLocation[0]==0) || (nullLocation[0]==2)) { // 0 = row
+			yTile[0] = 1;
+			yTile[1] = nullLocation[1]; 
+			yTile2 = null;
 		}
 		if(nullLocation[0]==1) {
-			xTile[0] = 0;
-			xTile2[0] = 2;
-			xTile[1] = nullLocation[1]; 
-			xTile2[1] = nullLocation[1];
+			yTile[0] = 0;
+			yTile2[0] = 2;
+			yTile[1] = nullLocation[1]; 
+			yTile2[1] = nullLocation[1];
 		}
-		if ((nullLocation[1]==0) || (nullLocation[1]==2)) { // 1 = row
-			yTile[1] = 1;
-			yTile[0] = nullLocation[0];
+		if ((nullLocation[1]==0) || (nullLocation[1]==2)) { // 1 = column
+			xTile[1] = 1;
+			xTile[0] = nullLocation[0];
+			xTile2 = null;
 		}
 		if(nullLocation[1]==1) {
-			yTile[1] = 0;
-			yTile2[1] = 2;
-			yTile[0] = nullLocation[1]; 
-			yTile2[0] = nullLocation[1];
+			xTile[1] = 0;
+			xTile2[1] = 2;
+			xTile[0] = nullLocation[1]; 
+			xTile2[0] = nullLocation[1];
 		}
 		
-		movableLocations.add(xTile);
-		movableLocations.add(xTile2);
 		movableLocations.add(yTile);
-		movableLocations.add(yTile2);
+		if(yTile2 != null) {movableLocations.add(yTile2);}
+		movableLocations.add(xTile);
+		if(xTile2 != null) {movableLocations.add(xTile2);}
 		
 		return movableLocations;
 	}
@@ -97,11 +176,11 @@ public class Puzzle {
 		int[] nullLocation = new int[2];
 
 		//Find indices of element with 0 value
-		for (int column = 0; column < currentShape.length; column++) {
-		    for (int row = 0; row < currentShape[column].length; row++) {
-		        if (currentShape[column][row] == null) {
-		        	nullLocation[0] = column;
-		        	nullLocation[1] = row;
+		for (int row = 0; row < currentShape.length; row++) {
+		    for (int column = 0; column < currentShape[row].length; column++) {
+		        if (currentShape[row][column] == null) {
+		        	nullLocation[0] = row;
+		        	nullLocation[1] = column;
 		        }
 		    }
 		}
@@ -124,8 +203,10 @@ public class Puzzle {
 	public int getMoves() {
 		return moves;
 	}
-	
-	public void resetMoves() {
+
+	public void resetPuzzle() {
+		tiles = new TileSet();
+		currentShape = tiles.initialShape;
 		moves = 0;
 	}
 

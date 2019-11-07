@@ -1,6 +1,7 @@
 package starter.entity;
 
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 public class TileSet {
 	
@@ -29,12 +30,25 @@ public class TileSet {
 									{t2, t5, t7},
 									{t3, t6, t8}};
 	
+	public ArrayList<Tile> getAllTiles() {
+		ArrayList<Tile> tiles = new ArrayList<Tile>();
+		tiles.add(t1);
+		tiles.add(t2);
+		tiles.add(t3);
+		tiles.add(t4);
+		tiles.add(t5);
+		tiles.add(t6);
+		tiles.add(t7);
+		tiles.add(t8);
+		return tiles;
+	}
 	
 	public TileSet() { 
 		// future work: could add an input to instantiation that determines initial configuration		
 	}
 	
-	void flipTile(Tile t, int column, int row) { // updates rectangle and flipped status of tile
+	
+	void flipTile(Tile t, int row, int column) { // updates rectangle and flipped status of tile
 		if(column == 0) { // left
 			if(row==0) {
 				t.setLocation(LT);
@@ -51,16 +65,20 @@ public class TileSet {
 		}
 		if(column == 1) { // middle
 			if(row==0) {
+				System.out.println("enters MT");
 				t.setLocation(MT);
 				t.flip();
+				System.out.println("t.getRectangle in MT"+t.getRectangle());
 			}
 			if(row==1) {
 				t.setLocation(MM);
 				t.flip();
 			}
 			if(row==2) {
+				System.out.println("enters MB");
 				t.setLocation(MB);
 				t.flip();
+				System.out.println("t.getRectangle in MB"+t.getRectangle());
 			}
 		}
 		if(column == 2) { // right

@@ -1,12 +1,14 @@
 package starter.controller;
 
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+
+import javax.swing.AbstractAction;
 
 import starter.boundary.Application;
 import starter.entity.Model;
 import starter.entity.Puzzle;
 
-public class ResetController {
+public class ResetController extends AbstractAction {
 	
 	final Application app;
 	final Model model;
@@ -17,10 +19,9 @@ public class ResetController {
 	}
 	
 	@Override
-	public void buttonPressed(MouseEvent me) {
+	public void actionPerformed(ActionEvent ae) {
 		Puzzle puzzle = model.getPuzzle();
-
-		
+		puzzle.resetPuzzle();		
 		app.repaint();
 	}
 }

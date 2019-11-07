@@ -3,7 +3,7 @@ package starter.entity;
 import java.awt.Rectangle;
 
 public class Tile {
-	final String top; //gray background-black number
+	final String top; //transparent background-black number
 	final String bottom; //black background-white number
 	
 	Rectangle location;
@@ -21,7 +21,9 @@ public class Tile {
 	}
 	
 	public void setLocation (Rectangle r) {
+		System.out.println("testing MT enters setLocation");
 		this.location = r;
+		System.out.println("testing MT setLocation"+this.location);
 	}
 	
 	public String getVisibleDigit() {
@@ -31,6 +33,10 @@ public class Tile {
 
 	public Rectangle getRectangle() {
 		return location;
+	}
+	
+	public boolean getFlipped() {
+		return flipped;
 	}
 
 }

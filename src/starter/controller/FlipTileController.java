@@ -35,10 +35,17 @@ public class FlipTileController extends MouseAdapter { //this is a java mouse li
 				clickedTile = t;
 			}
 		}
-		
 		// flip tile, add one move, and refresh display
 		puzzle.updatePuzzle(clickedTile);
 		puzzle.addOneMove();
+		if(puzzle.checkWin()) {
+			new StatusController(true,false);
+			new ResetController(app,model);
+		}
+		if(puzzle.checkLose()) {
+			new StatusController(false,true);
+			new ResetController(app,model);
+		}
 		app.repaint();
 	}
 
