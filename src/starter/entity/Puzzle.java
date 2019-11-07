@@ -80,18 +80,20 @@ public class Puzzle {
 		for(int i=0;i<currentShape.length;i++) {
 			for(int j=0;j<currentShape[i].length;j++) {
 				Tile t = currentShape[i][j];
-				String digit = t.getVisibleDigit();
-				if(digit.equals("1")) {
-					ones+=1;
-				}
-				if(digit.equals("2")) {
-					twos+=1;
-				}
-				if(digit.equals("3")) {
-					threes+=1;
-				}
-				if(digit.equals("4")) {
-					fours+=1;
+				if(t != null) {
+					String digit = t.getVisibleDigit();
+					if(digit.equals("1")) {
+						ones+=1;
+					}
+					if(digit.equals("2")) {
+						twos+=1;
+					}
+					if(digit.equals("3")) {
+						threes+=1;
+					}
+					if(digit.equals("4")) {
+						fours+=1;
+					}
 				}
 			}
 		}

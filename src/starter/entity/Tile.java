@@ -21,9 +21,9 @@ public class Tile {
 	}
 	
 	public void setLocation (Rectangle r) {
-		System.out.println("testing MT enters setLocation");
+		System.out.println("enters setLocation");
 		this.location = r;
-		System.out.println("testing MT setLocation"+this.location);
+		System.out.println("setLocation output: "+this.location);
 	}
 	
 	public String getVisibleDigit() {
