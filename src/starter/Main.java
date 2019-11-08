@@ -8,6 +8,7 @@ import starter.boundary.Application;
 import starter.controller.ExitApplicationController;
 import starter.entity.Model;
 import starter.entity.Puzzle;
+import starter.entity.Tile;
 import starter.entity.TileSet;
 
 public class Main {

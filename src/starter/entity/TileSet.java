@@ -92,5 +92,10 @@ public class TileSet {
 			}
 		}
 	}
+	
+	//stuff below only exists for testing
+	public Tile[][] getInitialShape(){
+		return this.initialShape;
+	}
 
 }

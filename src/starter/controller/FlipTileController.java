@@ -39,15 +39,19 @@ public class FlipTileController extends MouseAdapter { //this is a java mouse li
 		if(clickedTile != null) {
 			puzzle.updatePuzzle(clickedTile);
 			puzzle.addOneMove();
-			if(puzzle.checkWin()) {
-				new StatusController(true,false);
-				new ResetController(app,model);
-			}
-			if(puzzle.checkLose()) {
-				new StatusController(false,true);
-				new ResetController(app,model);
-			}
-		}		
+		}
+		boolean win = puzzle.checkWin();
+		boolean lose = puzzle.checkLose();
+		System.out.println("win? "+win);
+		System.out.println("lose? "+lose);
+		if(win) {
+			new StatusController(true,false);
+			new ResetController(app,model);
+		}
+		if(lose) {
+			new StatusController(false,true);
+			new ResetController(app,model);
+		}
 		app.repaint();
 	}
 

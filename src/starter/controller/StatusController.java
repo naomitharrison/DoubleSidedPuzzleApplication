@@ -8,6 +8,8 @@ public class StatusController {
 	StatusController(boolean win, boolean lose){
 		this.win=win;
 		this.lose=lose;
+		
+		
 	}
 	
 	

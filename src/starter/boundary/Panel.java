@@ -63,7 +63,7 @@ public class Panel extends JPanel {
 					.addContainerGap(262, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
-				
+		
 
 	}
 

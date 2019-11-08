@@ -49,22 +49,24 @@ public class Puzzle {
 		//if the numbers are in the correct order
 		for(int j=0;j<currentShape[0].length;j++) {
 			int topRowNum = j+1;
-			int bottomRowNum = 3-j;
 			String topRow = String.valueOf(topRowNum);
-			String bottomRow = String.valueOf(bottomRowNum);
-			if(!topRow.equals(currentShape[0][j].getVisibleDigit())){
+			String digit = currentShape[0][j].getVisibleDigit();
+			if(!topRow.equals(digit)){
 				return false;
-			}
-			if(!bottomRow.equals(currentShape[2][j].getVisibleDigit())){
+			} 
+		}
+		for(int k=0;k<currentShape[2].length;k++) {
+			int bottomRowNum = 3-k;
+			String bottomRow = String.valueOf(bottomRowNum);
+			if(!bottomRow.equals(currentShape[2][k].getVisibleDigit())){
 				return false;
 			}
 		}
-		String one = "1";
 		String four = "4";
 		if(!four.equals(currentShape[1][0].getVisibleDigit())) {
 			return false;
 		}
-		if(!one.equals(currentShape[1][2].getVisibleDigit())) {
+		if(!four.equals(currentShape[1][2].getVisibleDigit())) {
 			return false;
 		}
 		return true;
@@ -97,7 +99,7 @@ public class Puzzle {
 				}
 			}
 		}
-		if((ones>=maxDigits)||(twos>=maxDigits)||(threes>=maxDigits)||(fours>=maxDigits)) {
+		if((ones>maxDigits)||(twos>maxDigits)||(threes>maxDigits)||(fours>maxDigits)) {
 			return true;
 		}
 		return false;
@@ -207,9 +209,9 @@ public class Puzzle {
 	}
 
 	public void resetPuzzle() {
-		tiles = new TileSet();
-		currentShape = tiles.initialShape;
-		moves = 0;
+		this.tiles = new TileSet();
+		this.currentShape = tiles.initialShape;
+		this.moves = 0;
 	}
 
 	
@@ -217,4 +219,9 @@ public class Puzzle {
 	public void setShape(Tile[][] shape) {
 		this.currentShape = shape;
 	}
+	
+	public int[] getFindNullTile() {
+		return this.findNullTile();
+	}
+
 }

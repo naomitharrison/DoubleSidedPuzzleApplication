@@ -16,6 +16,9 @@ public class ResetController extends AbstractAction {
 	public ResetController(Application app, Model model) {
 		this.app = app;
 		this.model = model;
+		Puzzle puzzle = model.getPuzzle();
+		puzzle.resetPuzzle();		
+		app.repaint();
 	}
 	
 	@Override
