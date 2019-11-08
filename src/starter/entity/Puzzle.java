@@ -213,7 +213,6 @@ public class Puzzle {
 		this.currentShape = tiles.initialShape;
 		this.moves = 0;
 	}
-
 	
 	//functions below are used for test cases
 	public void setShape(Tile[][] shape) {
@@ -223,5 +222,7 @@ public class Puzzle {
 	public int[] getFindNullTile() {
 		return this.findNullTile();
 	}
+
+
 
 }

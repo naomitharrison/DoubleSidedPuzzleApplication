@@ -10,21 +10,19 @@ import starter.entity.Puzzle;
 
 public class ResetController extends AbstractAction {
 	
-	final Application app;
 	final Model model;
 	
-	public ResetController(Application app, Model model) {
-		this.app = app;
+	public ResetController(Model model) {
 		this.model = model;
 		Puzzle puzzle = model.getPuzzle();
-		puzzle.resetPuzzle();		
-		app.repaint();
+		puzzle.resetPuzzle();
+		model.resetStatus();
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		Puzzle puzzle = model.getPuzzle();
-		puzzle.resetPuzzle();		
-		app.repaint();
+		puzzle.resetPuzzle();
+		model.resetStatus();
 	}
 }

@@ -41,6 +41,11 @@ public class Panel extends JPanel {
 		int moves = puzzle.getMoves();
 		
 		JButton btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new ResetController(model);
+			}
+		});
 		
 		JLabel lblNoOfMoves = new JLabel("No. Of Moves: "+moves);
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -79,7 +84,7 @@ public class Panel extends JPanel {
 			Tile tile = tiles.get(i);
 			Rectangle r = tile.getRectangle();
 			boolean blackBackground = tile.getFlipped();
-			g.setFont(new Font("default", Font.BOLD, 16));
+			g.setFont(new Font("default", Font.BOLD, 32));
 			if(blackBackground) {
 				g.fillRect(r.x, r.y, r.width, r.height);
 				g.setColor(Color.WHITE);
@@ -89,8 +94,31 @@ public class Panel extends JPanel {
 			else {
 				g.drawString(tile.getVisibleDigit(), (int) r.getCenterX(), (int) r.getCenterY());
 				g.drawRect(r.x, r.y, r.width, r.height);
-			}			
+			}	
 		}
-
+		
+		//display winning or losing message
+		if(model.getWin()) {
+			Rectangle r = new Rectangle(125,175,350,250);
+			g.setColor(Color.BLUE);
+			g.fillRect(r.x, r.y, r.width, r.height);
+			g.setFont(new Font("default", Font.BOLD, 60));
+			g.setColor(Color.RED);
+			g.drawString("YOU WIN", 150, 300);
+			g.setFont(new Font("default", Font.BOLD, 16));
+			g.setColor(Color.WHITE);
+			g.drawString("Click Anywhere to Reset Game", 150, 350);
+		}
+		if(model.getLose()) {
+			Rectangle r = new Rectangle(125,175,350,250);
+			g.setColor(Color.BLUE);
+			g.fillRect(r.x, r.y, r.width, r.height);
+			g.setFont(new Font("default", Font.BOLD, 60));
+			g.setColor(Color.RED);
+			g.drawString("YOU LOSE", 150, 300);
+			g.setFont(new Font("default", Font.BOLD, 16));
+			g.setColor(Color.WHITE);
+			g.drawString("Click Anywhere to Reset Game", 150, 350);
+		}
 	}
 }
