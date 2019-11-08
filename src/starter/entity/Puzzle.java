@@ -212,4 +212,9 @@ public class Puzzle {
 		moves = 0;
 	}
 
+	
+	//functions below are used for test cases
+	public void setShape(Tile[][] shape) {
+		this.currentShape = shape;
+	}
 }

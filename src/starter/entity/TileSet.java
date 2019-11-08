@@ -65,20 +65,16 @@ public class TileSet {
 		}
 		if(column == 1) { // middle
 			if(row==0) {
-				System.out.println("enters MT");
 				t.setLocation(MT);
 				t.flip();
-				System.out.println("t.getRectangle in MT"+t.getRectangle());
 			}
 			if(row==1) {
 				t.setLocation(MM);
 				t.flip();
 			}
 			if(row==2) {
-				System.out.println("enters MB");
 				t.setLocation(MB);
 				t.flip();
-				System.out.println("t.getRectangle in MB"+t.getRectangle());
 			}
 		}
 		if(column == 2) { // right
