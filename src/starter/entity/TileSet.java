@@ -97,5 +97,10 @@ public class TileSet {
 	public Tile[][] getInitialShape(){
 		return this.initialShape;
 	}
+	
+	public Tile getFlipTile(Tile t, int row, int column) {
+		flipTile(t,row,column);
+		return t;
+	}
 
 }

@@ -149,8 +149,8 @@ public class Puzzle {
 		if(nullLocation[1]==1) {
 			xTile[1] = 0;
 			xTile2[1] = 2;
-			xTile[0] = nullLocation[1]; 
-			xTile2[0] = nullLocation[1];
+			xTile[0] = nullLocation[0]; 
+			xTile2[0] = nullLocation[0];
 		}
 		
 		movableLocations.add(yTile);
@@ -193,7 +193,7 @@ public class Puzzle {
 	}
 
 	public TileSet getTileSet() {
-		return tiles;
+		return this.tiles;
 	}
 	
 	public Tile[][] getShape() {
@@ -206,12 +206,6 @@ public class Puzzle {
 	
 	public int getMoves() {
 		return moves;
-	}
-
-	public void resetPuzzle() {
-		this.tiles = new TileSet();
-		this.currentShape = tiles.initialShape;
-		this.moves = 0;
 	}
 	
 	//functions below are used for test cases

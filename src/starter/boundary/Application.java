@@ -39,6 +39,7 @@ public class Application extends JFrame {
 		panel = new Panel(model);
 		FlipTileController fpc = new FlipTileController(this, model);
 		panel.addMouseListener(fpc);
+		panel.setVisible(true);
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(

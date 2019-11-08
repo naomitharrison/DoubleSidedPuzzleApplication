@@ -24,7 +24,7 @@ public class FlipTileController extends MouseAdapter { //this is a java mouse li
 	@Override
 	public void mousePressed(MouseEvent me) {
 		if(model.getLose()||model.getWin()) {
-			new ResetController(model);
+			new ResetController(model).process();
 		}
 		// if mouse is clicked in a tile adjacent to empty space
 		Point p = me.getPoint();

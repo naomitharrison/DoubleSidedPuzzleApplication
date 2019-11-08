@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 
 import javax.swing.JPanel;
 
+import starter.controller.ExitApplicationController;
 import starter.controller.ResetController;
 import starter.entity.Model;
 import starter.entity.Puzzle;
@@ -18,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -43,18 +45,22 @@ public class Panel extends JPanel {
 		JButton btnReset = new JButton("Reset");
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new ResetController(model);
+				new ResetController(model).process();
 			}
 		});
+		btnReset.setVisible(true);
 		
 		JLabel lblNoOfMoves = new JLabel("No. Of Moves: "+moves);
+		lblNoOfMoves.setVisible(true);
+		
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(btnReset)
-					.addPreferredGap(ComponentPlacement.RELATED, 305, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 269, Short.MAX_VALUE)
 					.addComponent(lblNoOfMoves)
 					.addContainerGap())
 		);
@@ -68,8 +74,6 @@ public class Panel extends JPanel {
 					.addContainerGap(262, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
-		
-
 	}
 
 

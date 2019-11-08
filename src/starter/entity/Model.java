@@ -35,4 +35,10 @@ public class Model {
 	public boolean getLose() {
 		return this.lose;
 	}
+
+	public void resetPuzzle() {
+		TileSet ts = new TileSet();
+		Puzzle p = new Puzzle(ts);
+		setPuzzle(p);
+	}
 }
