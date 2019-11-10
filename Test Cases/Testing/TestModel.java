@@ -58,12 +58,12 @@ class TestModel {
 		Model m = new Model();
 		m.resetPuzzle();
 		
-		Puzzle test = m.getPuzzle();
-		Tile[][] testShape = test.getShape();
+		Puzzle p = m.getPuzzle();
+		Tile[][] testShape = p.getShape();
 		
-		Tile[][] correctShape = new TileSet().getInitialShape();
+		Tile[][] correctShape = p.getTileSet().getInitialShape();
 		
-		assertArrayEquals(correctShape[0], testShape[0]); // not sure why these dont work? different new ts?
+		assertArrayEquals(correctShape[0], testShape[0]);
 		assertArrayEquals(correctShape[1], testShape[1]);
 		assertArrayEquals(correctShape[2], testShape[2]);
 	

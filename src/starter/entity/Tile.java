@@ -36,5 +36,46 @@ public class Tile {
 	public boolean getFlipped() {
 		return flipped;
 	}
+	
+	// functions below only exist because of testing
+	public String getTop() {
+		return this.top;
+	}
+
+	public String getBottom() {
+		return this.bottom;
+	}
+	
+	public boolean rectangleEquals(Rectangle r) {
+		if(this.location.x!=r.x) {
+			return false;
+		}
+		if(this.location.y!=r.y) {
+			return false;
+		}
+		if(this.location.width!=r.width) {
+			return false;
+		}
+		if(this.location.height!=r.height) {
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean tileEquals(Tile t) {
+		if(!this.top.equals(t.getTop())) {
+			return false;
+		}
+		if(!this.bottom.equals(t.getBottom())) {
+			return false;
+		}
+		if(this.flipped!=t.getFlipped()) {
+			return false;
+		}
+		if(!this.rectangleEquals(t.getRectangle())) {
+			return false;
+		}
+		return true;
+	}
 
 }

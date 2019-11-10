@@ -27,8 +27,8 @@ class TestTileSet {
 	
 	// initial configuration: the last digit of my ID is 1
 	Tile t1 = new Tile("1", "4", LT, false);
-	Tile t2 = new Tile("4", "1", LM, true);
-	Tile t3 = new Tile("3", "2", LB, true);
+	Tile t2 = new Tile("1", "4", LM, true);
+	Tile t3 = new Tile("2", "3", LB, true);
 	Tile t4 = new Tile("4", "1", MT, false);
 	Tile t5 = new Tile("3", "2", MM, false);
 	Tile t6 = new Tile("2", "3", MB, false);
@@ -117,8 +117,28 @@ class TestTileSet {
 		correct.add(t6);
 		correct.add(t7);
 		correct.add(t8);
-		
-		assertArrayEquals(correct.toArray(),test.toArray());
+
+//		System.out.println("test    tile 1: "+test.get(0).getTop()+" , "+test.get(0).getBottom());
+//		System.out.println("correct tile 1: "+correct.get(0).getTop()+" , "+correct.get(0).getBottom());
+//		System.out.println("test    tile 2: "+test.get(1).getTop()+" , "+test.get(1).getBottom());
+//		System.out.println("correct tile 2: "+correct.get(1).getTop()+" , "+correct.get(1).getBottom());
+//		System.out.println("test    tile 3: "+test.get(2).getTop()+" , "+test.get(2).getBottom());
+//		System.out.println("correct tile 3: "+correct.get(2).getTop()+" , "+correct.get(2).getBottom());
+//		System.out.println("test    tile 4: "+test.get(3).getTop()+" , "+test.get(3).getBottom());
+//		System.out.println("correct tile 4: "+correct.get(3).getTop()+" , "+correct.get(3).getBottom());
+//		System.out.println("test    tile 5: "+test.get(4).getTop()+" , "+test.get(4).getBottom());
+//		System.out.println("correct tile 5: "+correct.get(4).getTop()+" , "+correct.get(4).getBottom());
+//		System.out.println("test    tile 6: "+test.get(5).getTop()+" , "+test.get(5).getBottom());
+//		System.out.println("correct tile 6: "+correct.get(5).getTop()+" , "+correct.get(5).getBottom());
+
+		assertTrue(correct.get(0).tileEquals(test.get(0)));
+		assertTrue(correct.get(1).tileEquals(test.get(1)));
+		assertTrue(correct.get(2).tileEquals(test.get(2)));
+		assertTrue(correct.get(3).tileEquals(test.get(3)));
+		assertTrue(correct.get(4).tileEquals(test.get(4)));
+		assertTrue(correct.get(5).tileEquals(test.get(5)));
+		assertTrue(correct.get(6).tileEquals(test.get(6)));
+		assertTrue(correct.get(7).tileEquals(test.get(7)));
 		
 	}
 	

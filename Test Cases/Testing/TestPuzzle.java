@@ -204,8 +204,8 @@ class TestPuzzle {
 		Tile w1 = new Tile("1","0",r,false);
 		Tile w2 = new Tile("2","0",r,false);
 		Tile w3 = new Tile("3","0",r,false);
-		Tile w4 = new Tile("4","0",r,false);
-		Tile w5 = new Tile("0","4",r,true);
+		Tile w4 = new Tile("0","4",r,true);
+		Tile w5 = new Tile("4","0",r,false);
 		Tile w6 = new Tile("0","3",r,true);
 		Tile w7 = new Tile("0","2",r,true);
 		Tile w8 = new Tile("0","1",r,true);
@@ -261,14 +261,14 @@ class TestPuzzle {
 		Tile c2 = p.getShape()[1][2];
 		
 		ArrayList<Tile> correct = new ArrayList<Tile>();
-		correct.add(c1);
 		correct.add(c2);
+		correct.add(c1);
 		
 		ArrayList<Tile> test = p.movableTiles();
-
+		
 		assertEquals(correct.size(),test.size());
-		//assertEquals(correct.get(0),test.get(0)); 
-		//assert equals cant handle tile class so im gonna make my own equal(tile, tile) function at some point
+		assertTrue(correct.get(0).tileEquals(test.get(0)));
+		assertTrue(correct.get(1).tileEquals(test.get(1)));
 	}
 
 	@Test
@@ -291,8 +291,11 @@ class TestPuzzle {
 		ArrayList<Tile> test = p.movableTiles();
 
 		assertEquals(correct.size(),test.size());
-		assertEquals(correct.get(0),test.get(0)); 
-		//assert equals cant handle tile class so im gonna make my own equal(tile, tile) function at some point
+		
+		assertTrue(correct.get(0).tileEquals(test.get(0)));
+		assertTrue(correct.get(1).tileEquals(test.get(1)));
+		assertTrue(correct.get(2).tileEquals(test.get(2)));
+		assertTrue(correct.get(3).tileEquals(test.get(3)));
 	}	
 	
 	@Test
@@ -333,4 +336,5 @@ class TestPuzzle {
 		
 		assertEquals(correct, test);
 	}
+	
 }

@@ -35,50 +35,12 @@ public class Panel extends JPanel {
 		this.model = m;
 	}
 
-	/**
-	 * Create the panel.
-	 */
-	public Panel() {
-		Puzzle puzzle = model.getPuzzle();
-		int moves = puzzle.getMoves();
-		
-		JButton btnReset = new JButton("Reset");
-		btnReset.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				new ResetController(model).process();
-			}
-		});
-		btnReset.setVisible(true);
-		
-		JLabel lblNoOfMoves = new JLabel("No. Of Moves: "+moves);
-		lblNoOfMoves.setVisible(true);
-		
-		
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnReset)
-					.addPreferredGap(ComponentPlacement.RELATED, 269, Short.MAX_VALUE)
-					.addComponent(lblNoOfMoves)
-					.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNoOfMoves)
-						.addComponent(btnReset))
-					.addContainerGap(262, Short.MAX_VALUE))
-		);
-		setLayout(groupLayout);
-	}
-
 
 	@Override
 	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		if (model == null) {return; }
+		
 		Puzzle puzzle = model.getPuzzle();
 		TileSet tileSet = puzzle.getTileSet();
 		ArrayList<Tile> tiles = tileSet.getAllTiles();

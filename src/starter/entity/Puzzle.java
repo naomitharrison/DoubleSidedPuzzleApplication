@@ -36,14 +36,14 @@ public class Puzzle {
 			if(currentShape[0][i].flipped) { //if any tile in first row is flipped
 				return false;
 			}
-			if(!currentShape[2][i].flipped) { //if any tile in last row is not flipped
+			if(!currentShape[2][i].flipped) { //if any tile in bottom row is not flipped
 				return false;
 			}
 		}
-		if (currentShape[1][0].flipped) { // if left tile in middle row is flipped
+		if (!currentShape[1][0].flipped) { // if left tile in middle row is flipped
 			return false;
 		}
-		if (!currentShape[1][2].flipped) { // if right tile in middle row is not flipped
+		if (currentShape[1][2].flipped) { // if right tile in middle row is not flipped
 			return false;
 		}
 		//if the numbers are in the correct order
@@ -135,7 +135,7 @@ public class Puzzle {
 			yTile[1] = nullLocation[1]; 
 			yTile2 = null;
 		}
-		if(nullLocation[0]==1) {
+		else if(nullLocation[0]==1) {
 			yTile[0] = 0;
 			yTile2[0] = 2;
 			yTile[1] = nullLocation[1]; 
@@ -146,7 +146,7 @@ public class Puzzle {
 			xTile[0] = nullLocation[0];
 			xTile2 = null;
 		}
-		if(nullLocation[1]==1) {
+		else if(nullLocation[1]==1) {
 			xTile[1] = 0;
 			xTile2[1] = 2;
 			xTile[0] = nullLocation[0]; 
@@ -206,6 +206,10 @@ public class Puzzle {
 	
 	public int getMoves() {
 		return moves;
+	}
+	
+	public void resetMoves() {
+		moves = 0;
 	}
 	
 	//functions below are used for test cases

@@ -24,7 +24,7 @@ public class FlipTileController extends MouseAdapter { //this is a java mouse li
 	@Override
 	public void mousePressed(MouseEvent me) {
 		if(model.getLose()||model.getWin()) {
-			new ResetController(model).process();
+			new ResetController(app,model).process();
 		}
 		// if mouse is clicked in a tile adjacent to empty space
 		Point p = me.getPoint();
@@ -42,9 +42,12 @@ public class FlipTileController extends MouseAdapter { //this is a java mouse li
 		if(clickedTile != null) {
 			puzzle.updatePuzzle(clickedTile);
 			puzzle.addOneMove();
+			int moves = puzzle.getMoves();
+			app.getLabel().setText("No. Of Moves: "+moves);
 		}
 		boolean win = puzzle.checkWin();
 		boolean lose = puzzle.checkLose();
+		
 		if(win) {
 			model.setStatus(true,false);
 			app.repaint();

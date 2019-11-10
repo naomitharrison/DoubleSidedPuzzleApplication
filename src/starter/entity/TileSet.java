@@ -18,8 +18,8 @@ public class TileSet {
 	
 	// initial configuration: the last digit of my ID is 1
 	Tile t1 = new Tile("1", "4", LT, false);
-	Tile t2 = new Tile("4", "1", LM, true);
-	Tile t3 = new Tile("3", "2", LB, true);
+	Tile t2 = new Tile("1", "4", LM, true);
+	Tile t3 = new Tile("2", "3", LB, true);
 	Tile t4 = new Tile("4", "1", MT, false);
 	Tile t5 = new Tile("3", "2", MM, false);
 	Tile t6 = new Tile("2", "3", MB, false);
@@ -54,39 +54,39 @@ public class TileSet {
 				t.setLocation(LT);
 				t.flip();
 			}
-			if(row==1) {
+			else if(row==1) {
 				t.setLocation(LM);
 				t.flip();
 			}
-			if(row==2) {
+			else if(row==2) {
 				t.setLocation(LB);
 				t.flip();
 			}
 		}
-		if(column == 1) { // middle
+		else if(column == 1) { // middle
 			if(row==0) {
 				t.setLocation(MT);
 				t.flip();
 			}
-			if(row==1) {
+			else if(row==1) {
 				t.setLocation(MM);
 				t.flip();
 			}
-			if(row==2) {
+			else if(row==2) {
 				t.setLocation(MB);
 				t.flip();
 			}
 		}
-		if(column == 2) { // right
+		else if(column == 2) { // right
 			if(row==0) {
 				t.setLocation(RT);
 				t.flip();
 			}
-			if(row==1) {
+			else if(row==1) {
 				t.setLocation(RM);
 				t.flip();
 			}
-			if(row==2) {
+			else if(row==2) {
 				t.setLocation(RB);
 				t.flip();
 			}
