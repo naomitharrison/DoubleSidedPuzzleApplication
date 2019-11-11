@@ -11,7 +11,7 @@ import starter.entity.Puzzle;
 import starter.entity.Tile;
 import starter.boundary.Application;
 
-public class FlipTileController extends MouseAdapter { //this is a java mouse listener
+public class FlipTileController { //this is a java mouse listener
 	
 	final Application app;
 	final Model model;
@@ -21,13 +21,12 @@ public class FlipTileController extends MouseAdapter { //this is a java mouse li
 		this.model = model;
 	}
 	
-	@Override
-	public void mousePressed(MouseEvent me) {
+	public void mousePressed(Point p) {
 		if(model.getLose()||model.getWin()) {
 			new ResetController(app,model).process();
 		}
 		// if mouse is clicked in a tile adjacent to empty space
-		Point p = me.getPoint();
+//		Point p = me.getPoint();
 		Puzzle puzzle = model.getPuzzle();
 		ArrayList<Tile> movableTiles = puzzle.movableTiles();
 		Tile clickedTile = null;

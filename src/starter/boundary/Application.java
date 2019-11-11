@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -46,8 +48,13 @@ public class Application extends JFrame {
 		setContentPane(contentPane);
 		
 		panel = new Panel(model);
-		FlipTileController fpc = new FlipTileController(this, model);
-		panel.addMouseListener(fpc);
+	
+		panel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent me) {
+				 new FlipTileController(Application.this, model).mousePressed(me.getPoint());
+			}
+		});
 		panel.setVisible(true);
 		
 		JButton btnR = new JButton("Reset");
